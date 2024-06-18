@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyAccount from "./myAccount";
 import MyBudget from "./myBudget";
+import { useRouter } from "next/navigation";
 
 function MainComp() {
-    // const [steps, setSteps] = useState<number>(1);
+    const router = useRouter();
+
+    useEffect(() => {
+        const showWelcome = localStorage.getItem("showWelcome");
+
+        if (showWelcome === "Yes") {
+            router.push("/welcome");
+        }
+    }, []);
 
     return (
         <section className="px-1 sm:px-4 md:px-8 py-4 w-full overflow-y-hidden overflow-x-hidden">

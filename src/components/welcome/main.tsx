@@ -12,6 +12,7 @@ function MainComp() {
         let timer: NodeJS.Timeout;
 
         timer = setTimeout(() => {
+            localStorage.setItem("showWelcome", "No");
             router.push("/onboard");
         }, 5000);
 

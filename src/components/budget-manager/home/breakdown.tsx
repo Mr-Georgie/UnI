@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { valueFormatter } from "@/lib/utils";
 import Link from "next/link";
-import { Budget, budgetData } from "../create/zdata";
+import { Budget, budgetData } from "../edit/zdata";
 
 const invoices = [
     {

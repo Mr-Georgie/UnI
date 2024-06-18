@@ -6,6 +6,8 @@ import Summary from "./summary";
 import Breakdown from "./breakdown";
 import RecentActivities from "@/components/home/recentActivities";
 import Activities from "./activities";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function MainComp() {
     return (
