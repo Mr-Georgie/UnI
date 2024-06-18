@@ -7,14 +7,20 @@ import { useRouter } from "next/navigation";
 
 function MainComp() {
     const router = useRouter();
+    const [alreadyChecked, setAlreadyChecked] = useState(false);
 
     useEffect(() => {
-        const showWelcome = localStorage.getItem("showWelcome");
+        if (!alreadyChecked) {
+            const showWelcome = localStorage.getItem("showWelcome");
 
-        if (showWelcome === "Yes") {
-            router.push("/welcome");
+            if (!showWelcome) {
+                localStorage.setItem("showWelcome", "No");
+                router.push("/welcome");
+            }
+
+            setAlreadyChecked(true); // Ensure this logic only runs once
         }
-    }, []);
+    }, [alreadyChecked, router]);
 
     return (
         <section className="px-1 sm:px-4 md:px-8 py-4 w-full overflow-y-hidden overflow-x-hidden">
