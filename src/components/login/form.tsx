@@ -98,7 +98,7 @@ export function LoginForm() {
                 </Button>
 
                 <div>
-                    don't have an account?
+                    {"don't have an account?"}
                     <Link href="/signup" className="underline px-3">
                         click here
                     </Link>
