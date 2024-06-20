@@ -22,7 +22,7 @@ export async function POST(request: Request) {
                     redirect_url: "http://localhost:3000/api/payment-callback",
                     customizations: {
                         title: "UnI Savings App",
-                        logo: "https://u-n-i.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75",
+                        logo: "https://raw.githubusercontent.com/Mr-Georgie/UnI/main/public/Logo-dark.png",
                     },
                 }),
             }
