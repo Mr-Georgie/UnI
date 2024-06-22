@@ -90,8 +90,8 @@ function Activities() {
             </div>
             <Table>
                 <TableBody>
-                    {invoices.map((invoice) => (
-                        <TableRow key={invoice.invoice}>
+                    {invoices.map((invoice, index) => (
+                        <TableRow key={index}>
                             <TableCell className="font-medium max-w-14">
                                 {invoice.invoice}
                             </TableCell>

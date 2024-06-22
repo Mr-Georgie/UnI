@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export default function SignupLayout({
+export default function DashboardLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

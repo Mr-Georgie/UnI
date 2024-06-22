@@ -14,7 +14,7 @@ function MainComp() {
         timer = setTimeout(() => {
             localStorage.setItem("showWelcome", "No");
             router.push("/onboard");
-        }, 5000);
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, []);

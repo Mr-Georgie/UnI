@@ -1,6 +1,6 @@
-import MainComp from "@/components/onboard/main";
+import MainComp from "@/components/archive/onboard2/main";
 
-export default function Signup() {
+export default function Onboard() {
     return (
         <main className="h-screen overflow-y-hidden">
             <MainComp />

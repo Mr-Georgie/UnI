@@ -25,7 +25,7 @@ const Dialog: React.FC<Props> = ({ setShowDialog, showDialog }) => {
 
     const goForward = (option: string) => {
         localStorage.setItem("showOnboarding", option);
-        router.push("/login");
+        router.push("/api/auth/login");
     };
 
     return (

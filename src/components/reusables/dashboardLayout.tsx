@@ -1,8 +1,9 @@
-import React from "react";
+"use client";
 import Sidebar from "./sidebar";
 import Header from "./header";
 import Footer from "./footer";
 import { ScrollArea } from "../ui/scroll-area";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -22,4 +23,4 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
     );
 };
 
-export default DashboardLayout;
+export default withPageAuthRequired(DashboardLayout);

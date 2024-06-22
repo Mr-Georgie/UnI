@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export default function HomeLayout({
+export default function WelcomeLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

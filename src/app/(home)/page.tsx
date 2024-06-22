@@ -1,11 +1,11 @@
-import MainComp from "@/components/home/main";
-import DashboardLayout from "@/components/reusables/dashboardLayout";
-import Image from "next/image";
+import MainComp from "@/components/landing/main";
 
-export default function Home() {
+export default function Welcome() {
     return (
-        <DashboardLayout>
+        <main className="h-screen relative overflow-hidden">
+            <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-[#b7ccff]"></div>
+            <div className="absolute -left-20 -bottom-20 h-44 w-44 rounded-full bg-[#b7ccff]"></div>
             <MainComp />
-        </DashboardLayout>
+        </main>
     );
 }

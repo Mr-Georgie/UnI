@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope, Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -39,12 +40,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body
-                className={`${inter.variable} ${manrope.variable} ${plus_jakarta_sans.variable} ${outfit.variable}`}
-            >
-                {children}
-                <Toaster />
-            </body>
+            <UserProvider>
+                <body
+                    className={`${inter.variable} ${manrope.variable} ${plus_jakarta_sans.variable} ${outfit.variable}`}
+                >
+                    {children}
+                    <Toaster />
+                </body>
+            </UserProvider>
         </html>
     );
 }

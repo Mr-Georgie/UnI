@@ -15,9 +15,9 @@ function MyAccount() {
                     </h5>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
-                    <Balance />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <BudgetBalance />
+                    <Balance />
                 </div>
             </div>
 

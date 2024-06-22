@@ -7,6 +7,13 @@ const nextConfig = {
             "s.gravatar.com",
             "images.unsplash.com",
         ],
+        // remotePatterns: [
+        //     {
+        //         protocol: 'https',
+        //         hostname: '**.example.com',
+        //         port: '',
+        //       },
+        // ]
     },
 };
 
