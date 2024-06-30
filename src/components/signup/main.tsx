@@ -9,14 +9,14 @@ import { SignUpForm } from "./form";
 import { useSession } from "next-auth/react";
 
 function MainComp() {
-    const { data: session } = useSession();
-    const router = useRouter();
+    // const { data: session } = useSession();
+    // const router = useRouter();
 
-    useEffect(() => {
-        if (session) {
-            router.push("/dashboard");
-        }
-    }, [session, router]);
+    // useEffect(() => {
+    //     if (session) {
+    //         router.push("/dashboard");
+    //     }
+    // }, [session, router]);
 
     return (
         <div className="h-full flex flex-col items-center justify-center">
