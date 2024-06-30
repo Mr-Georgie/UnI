@@ -24,9 +24,9 @@ type userDropdown = React.ReactNode;
 function Header() {
     const { data: session } = useSession();
 
-    useEffect(() => {
-        console.log(session);
-    }, []);
+    // useEffect(() => {
+    //     console.log(session);
+    // }, []);
 
     const dropDownHere: userDropdown = (
         <Button
@@ -39,8 +39,7 @@ function Header() {
                     alt="@shadcn"
                 />
                 <AvatarFallback>
-                    {session?.user?.email ?? "Hi"}
-                    {/* {"Hi"} */}
+                    {session?.user?.email ? session?.user?.email : "Hi"}
                 </AvatarFallback>
             </Avatar>
             <svg

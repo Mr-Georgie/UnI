@@ -94,13 +94,11 @@ export function SignInForm() {
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
-                <div className="grid grid-cols-2 gap-6">
-                    <Button variant="outline">
-                        {/* <Icons.gitHub className="mr-2 h-4 w-4" /> */}
+                {/* <div className="grid grid-cols-2 gap-6">
+                    <Button variant="outline" disabled>
                         Github
                     </Button>
-                    <Button variant="outline">
-                        {/* <Icons.google className="mr-2 h-4 w-4" /> */}
+                    <Button variant="outline" disabled>
                         Google
                     </Button>
                 </div>
@@ -113,7 +111,7 @@ export function SignInForm() {
                             Or
                         </span>
                     </div>
-                </div>
+                </div> */}
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}

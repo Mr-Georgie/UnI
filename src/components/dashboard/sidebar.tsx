@@ -9,6 +9,15 @@ function Sidebar() {
     const { data: session } = useSession();
 
     const pathname = usePathname();
+
+    function truncateString(str: string | null | undefined) {
+        // Check if the string is longer than 7 characters
+        if (str && str.length > 9) {
+            return str.slice(0, 9) + "...";
+        }
+        return str;
+    }
+
     return (
         <div className="h-full hidden md:flex md:flex-col gap-8">
             <div className="grid grid-cols-3 bg-white shadow-md m-4 rounded-lg">
@@ -24,9 +33,13 @@ function Sidebar() {
                 </div>
                 <div className="col-span-2 flex flex-col my-2">
                     <span className="font-outfit">
-                        Hello {session?.user?.name}
+                        Hello
+                        {/* {session?.user?.name} */}
                     </span>
-                    <span className="font-outfit text-xs">Welcome</span>
+                    {/* <span className="font-outfit text-xs">Welcome</span> */}
+                    <span className="font-outfit text-xs">
+                        {truncateString(session?.user?.email) ?? "Welcome"}
+                    </span>
                 </div>
             </div>
             <div className="flex flex-col justify-around gap-4 w-full font-outfit text-stone-500">
@@ -55,7 +68,7 @@ function Sidebar() {
                     <span>Dashboard</span>
                 </Link>
                 <Link
-                    href="/dashboard/budgets"
+                    href="/dashboard"
                     className={`p-3 rounded-lg mx-4 flex gap-3 ${
                         pathname.includes("/budgets")
                             ? "bg-white font-semibold"
@@ -84,7 +97,7 @@ function Sidebar() {
                     <span>Budgets</span>
                 </Link>
                 <Link
-                    href="/dashboard/savings"
+                    href="/dashboard"
                     className={`p-3 rounded-lg mx-4 flex gap-3 ${
                         pathname === "/dashboard/savings"
                             ? "bg-white font-semibold"
@@ -109,7 +122,7 @@ function Sidebar() {
                     <span>Savings</span>
                 </Link>
                 <Link
-                    href="/dashboard/settings"
+                    href="/dashboard"
                     className={`p-3 rounded-lg mx-4 flex gap-3 ${
                         pathname === "/dashboard/settings"
                             ? "bg-white font-semibold"

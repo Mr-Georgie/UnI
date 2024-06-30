@@ -95,16 +95,14 @@ export function SignUpForm() {
             </CardHeader>
             <CardContent className="grid gap-4">
                 <div className="grid grid-cols-2 gap-6">
-                    <Button variant="outline">
-                        {/* <Icons.gitHub className="mr-2 h-4 w-4" /> */}
+                    {/* <Button variant="outline" disabled>
                         Github
                     </Button>
-                    <Button variant="outline">
-                        {/* <Icons.google className="mr-2 h-4 w-4" /> */}
+                    <Button variant="outline" disabled>
                         Google
-                    </Button>
+                    </Button> */}
                 </div>
-                <div className="relative">
+                {/* <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t" />
                     </div>
@@ -113,7 +111,7 @@ export function SignUpForm() {
                             Or
                         </span>
                     </div>
-                </div>
+                </div> */}
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}

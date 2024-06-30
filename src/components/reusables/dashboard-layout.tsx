@@ -48,25 +48,46 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
             // Check for budget in localStorage
             const budget = localStorage.getItem("newBudget");
 
-            if (budget && !isBudgetLoading && !budgets) {
+            if (budget) {
                 // Function to save budget to DB
-                await setupBudgetAndSavings(budget);
-                localStorage.removeItem("newBudget"); // Clear the localStorage after saving
-            } else {
-                toast({
-                    description:
-                        "Hey! We've found an existing budget for you. We only support one budget for now",
-                });
+                try {
+                    await setupBudgetAndSavings(budget);
+                    localStorage.removeItem("newBudget"); // Clear the localStorage after saving
+                    localStorage.removeItem("newBudgetList"); // Clear the localStorage after saving
+                } catch (error) {
+                    if (!isBudgetLoading && budgets) {
+                        toast({
+                            description:
+                                "We only support one budget per account for now.",
+                        });
+                    } else {
+                        toast({
+                            description:
+                                "An error occurred while creating budget. Please retry",
+                        });
+                    }
+                }
             }
 
-            if (id && !isBudgetLoading && !budgets) {
-                // API call to handle userId
-                await setupPartner(id);
-            } else {
-                toast({
-                    description:
-                        "Hey! We've found an existing budget for you. We only support one budget for now",
-                });
+            if (id) {
+                try {
+                    // API call to handle userId
+                    await setupPartner(id);
+                    localStorage.removeItem("newBudget"); // Clear the localStorage after saving
+                    localStorage.removeItem("newBudgetList"); // Clear the localStorage after saving
+                } catch (error) {
+                    if (!isBudgetLoading && budgets) {
+                        toast({
+                            description:
+                                "We only support one budget per account for now.",
+                        });
+                    } else {
+                        toast({
+                            description:
+                                "An error occurred while creating budget. Please retry",
+                        });
+                    }
+                }
             }
 
             // Set loading state to false after setup is complete
@@ -74,7 +95,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         };
 
         setup();
-    }, [isLoading]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading, isBudgetLoading, budgets]);
 
     if (isLoading) {
         return (
