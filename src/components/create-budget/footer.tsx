@@ -24,16 +24,6 @@ const Footer: React.FC<Props> = ({
     const router = useRouter();
 
     const createBudget = async () => {
-        // const selectedBudget: CompiledBudget = {
-        //     budgetList: items.filter((item) => item.selected),
-        //     duration,
-        //     balance: null,
-        //     name: budgetName,
-        // };
-
-        // await localStorage.setItem("budget", JSON.stringify(selectedBudget));
-        // await localStorage.setItem("showCongratsMessage", "Yes");
-
         router.push("/dashboard");
     };
 
