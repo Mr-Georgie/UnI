@@ -100,7 +100,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex gap-2 justify-center items-center h-screen">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
