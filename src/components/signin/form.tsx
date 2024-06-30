@@ -32,7 +32,7 @@ import { setSignInCallBackUrl } from "@/lib/nextauth/utils";
 
 const FormSchema = z.object({
     email: z.string().email({
-        message: "Invalid email address. ",
+        message: "Invalid email address.",
     }),
 });
 
