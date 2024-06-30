@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
-import { BudgetItem } from "@/store/budget/budgetSlice";
 import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import { useToast } from "../ui/use-toast";
+import { Item } from "@/app/models/models";
 
 interface Props {
     setIsStepOneDone: React.Dispatch<SetStateAction<boolean>>;
@@ -16,7 +16,7 @@ interface Props {
 const StepTwo: React.FC<Props> = ({ setIsStepOneDone, setIsStepTwoDone }) => {
     const { toast } = useToast();
 
-    const [newBudgetList, setNewBudgetList] = useState<BudgetItem[]>([]);
+    const [newBudgetList, setNewBudgetList] = useState<Item[]>([]);
 
     useEffect(() => {
         let b = localStorage.getItem("newBudgetList");

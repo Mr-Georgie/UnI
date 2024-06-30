@@ -14,21 +14,13 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Label } from "../ui/label";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Done: React.FC = () => {
     const router = useRouter();
+    const { data: session } = useSession();
 
     const createBudget = async () => {
-        // const selectedBudget: CompiledBudget = {
-        //     budgetList: items.filter((item) => item.selected),
-        //     duration,
-        //     balance: null,
-        //     name: budgetName,
-        // };
-
-        // await localStorage.setItem("budget", JSON.stringify(selectedBudget));
-        // await localStorage.setItem("showCongratsMessage", "Yes");
-
         router.push("/dashboard");
     };
     return (
@@ -65,8 +57,10 @@ const Done: React.FC = () => {
                                     </svg>
                                 </div>
                                 <div className="mt-5">
-                                    <p className="">
-                                        Go to dashboard and start saving!
+                                    <p className="text-sm font-semibold font-plus_jakarta_sans">
+                                        {
+                                            "You'll have to signin if you're not signed in already"
+                                        }
                                     </p>
                                 </div>
                             </motion.div>
@@ -81,7 +75,7 @@ const Done: React.FC = () => {
                             className="w-full max-w-80"
                             onClick={() => createBudget()}
                         >
-                            Go to Dashboard
+                            continue to dashboard
                         </Button>
                     </div>
                 </div>

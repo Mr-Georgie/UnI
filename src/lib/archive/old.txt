@@ -1,0 +1,29 @@
+export interface Fund {
+    user: string;
+    date: string;
+    amount: number;
+    account: string;
+}
+
+export interface BudgetItem {
+    name: string;
+    image?: string;
+    cost: number | null;
+}
+
+export interface Budget {
+    _id: ObjectId | null;
+    userId: string | null;
+    itemList: BudgetItem[] | null;
+    title: string | null;
+    totalCost: number | null;
+    duration: string | null;
+    balance: number | null;
+    partnerId: string | null;
+}
+
+const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);

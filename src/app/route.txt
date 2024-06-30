@@ -1,0 +1,43 @@
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
+import Budget from "@/app/models/Budget";
+import { authOptions } from "@/lib/nextauth/auth";
+
+export async function GET(req: NextRequest) {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return NextResponse.redirect("/api/auth/signin");
+    }
+
+    await mongoose.connect(process.env.MONGODB_URI as string);
+
+    const budgets = await Budget.find({ userId: session.userId });
+    return NextResponse.json(budgets);
+}
+
+export async function POST(req: NextRequest) {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return NextResponse.redirect("/api/auth/signin");
+    }
+
+    await mongoose.connect(process.env.MONGODB_URI as string);
+
+    const { title, goal, duration, itemList } = await req.json();
+    const monthlySavings = goal / duration;
+
+    const budget = new Budget({
+        userId: session.userId,
+        title,
+        goal,
+        duration,
+        monthlySavings,
+        itemList,
+    });
+
+    await budget.save();
+    return NextResponse.json(budget);
+}

@@ -11,8 +11,9 @@ import {
     useEffect,
     useState,
 } from "react";
-import { BudgetItem } from "@/store/budget/budgetSlice";
+
 import { useToast } from "../ui/use-toast";
+import { Item } from "@/app/models/models";
 
 interface Props {
     setIsStepOneDone: React.Dispatch<SetStateAction<boolean>>;
@@ -21,7 +22,7 @@ interface Props {
 const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
     const { toast } = useToast();
 
-    const [newBudgetList, setNewBudgetList] = useState<BudgetItem[]>([]);
+    const [newBudgetList, setNewBudgetList] = useState<Item[]>([]);
     const [budgetName, setBudgetName] = useState<string>("");
 
     useEffect(() => {
@@ -47,12 +48,12 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
         }
 
         if (budgetName.trim()) {
-            const newItem: BudgetItem = {
+            const newItem: Item = {
                 name: budgetName,
                 cost: null,
             };
 
-            setNewBudgetList((prevList: any) => [...prevList, newItem]);
+            setNewBudgetList((prevList: Item[]) => [...prevList, newItem]);
 
             setBudgetName("");
         }

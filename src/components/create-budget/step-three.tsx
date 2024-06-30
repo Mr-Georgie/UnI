@@ -14,8 +14,8 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Label } from "../ui/label";
 import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import { useToast } from "../ui/use-toast";
-import { Budget, BudgetItem } from "@/store/budget/budgetSlice";
 import { formatCurrency } from "@/lib/utils";
+import { Budget, Item } from "@/app/models/models";
 
 interface Props {
     setIsStepThreeDone: React.Dispatch<SetStateAction<boolean>>;
@@ -29,7 +29,7 @@ const StepThree: React.FC<Props> = ({
     const { toast } = useToast();
 
     // const [budget, setBudget] = useState<Budget>();
-    const [newBudgetList, setNewBudgetList] = useState<BudgetItem[]>([]);
+    const [newBudgetList, setNewBudgetList] = useState<Item[]>([]);
     const [duration, setDuration] = useState("6");
     const [totalCost, setTotalCost] = useState(0);
     const [budgetTitle, setBudgetTitle] = useState("");
@@ -81,8 +81,10 @@ const StepThree: React.FC<Props> = ({
             title: budgetTitle,
             totalCost: totalCost,
             itemList: newBudgetList,
-            duration: duration,
-            balance: 0,
+            duration: Number(duration),
+            partnerId: null,
+            userId: null,
+            monthlySavings: totalCost / Number(duration),
         };
 
         console.log(newBudget);

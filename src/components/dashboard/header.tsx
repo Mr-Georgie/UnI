@@ -4,8 +4,62 @@ import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SideBarSmall } from "./sidebar-small";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
+
+type userDropdown = React.ReactNode;
 
 function Header() {
+    const { data: session } = useSession();
+
+    useEffect(() => {
+        console.log(session);
+    }, []);
+
+    const dropDownHere: userDropdown = (
+        <Button
+            variant="ghost"
+            className="bg-[#fafafa] rounded-3xl flex gap-2 focus-visible:ring-0 focus-visible:ring-offset-0"
+        >
+            <Avatar className="h-6 w-6">
+                <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                />
+                <AvatarFallback>
+                    {session?.user?.email ?? "Hi"}
+                    {/* {"Hi"} */}
+                </AvatarFallback>
+            </Avatar>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-3 h-3"
+            >
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+            </svg>
+        </Button>
+    );
+
     return (
         <header role="banner" className="border-b bg-white">
             <nav
@@ -48,10 +102,27 @@ function Header() {
                     </div>
                 </div>
                 <div className="flex gap-3 items-center">
-                    <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <div className="">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                {dropDownHere}
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                <DropdownMenuLabel>
+                                    {"Hey, Ena"}
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    {/* <DropdownMenuItem>
+                                    <Link href="/profile">Profile</Link>
+                                </DropdownMenuItem> */}
+                                    <DropdownMenuItem onClick={() => signOut()}>
+                                        <span>Logout</span>
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
                     <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 function Sidebar() {
+    const { data: session } = useSession();
+
     const pathname = usePathname();
     return (
         <div className="h-full hidden md:flex md:flex-col gap-8">
@@ -20,7 +23,9 @@ function Sidebar() {
                     />
                 </div>
                 <div className="col-span-2 flex flex-col my-2">
-                    <span className="font-outfit">Hello Ena,</span>
+                    <span className="font-outfit">
+                        Hello {session?.user?.name}
+                    </span>
                     <span className="font-outfit text-xs">Welcome</span>
                 </div>
             </div>
