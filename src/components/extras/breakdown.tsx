@@ -11,8 +11,8 @@ import {
 } from "../ui/select";
 import { Label } from "../ui/label";
 import { formatCurrency } from "@/lib/utils";
-import { Budget } from "@/store/budget/budgetSlice";
 import { ScrollArea } from "../ui/scroll-area";
+import { Budget } from "@/app/models/models";
 
 export function Breakdown() {
     const [budget, setBudget] = useState<Budget>();

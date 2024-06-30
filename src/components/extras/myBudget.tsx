@@ -2,7 +2,7 @@
 // import BudgetBalance from "./budgetBalance";
 import { BudgetChart } from "../extras/budgetChart";
 // import { BudgetVsPartnerChart } from "./budgetVsPartnerChart";
-import { DonutChartUsageExample } from "./donutChart";
+import { DonutChartUsageExample } from "../reusables/donut-chart";
 import {
     Select,
     SelectContent,
@@ -12,7 +12,7 @@ import {
 } from "../ui/select";
 import { Label } from "../ui/label";
 import Link from "next/link";
-import RecentActivities from "./recentActivities";
+import RecentActivities from "../reusables/recent-activities";
 
 function MyBudget() {
     return (

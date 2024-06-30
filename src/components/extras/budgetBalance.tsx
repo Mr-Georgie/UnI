@@ -3,8 +3,8 @@
 import { Card, ProgressBar } from "@tremor/react";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { Budget } from "@/store/budget/budgetSlice";
 import { formatCurrency } from "@/lib/utils";
+import { Budget } from "@/app/models/models";
 
 function BudgetBalance() {
     const [budget, setBudget] = useState<Budget>();
@@ -23,7 +23,7 @@ function BudgetBalance() {
         <Card className="w-full rounded-lg bg-cyan-500 relative overflow-hidden text-white">
             <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-stone-50"></div>
             <h4 className="text-tremor-default ">MyWedding24</h4>
-            <p className="text-tremor-metric font-semibold">
+            {/* <p className="text-tremor-metric font-semibold">
                 {budget?.balance
                     ? formatCurrency(budget?.balance)
                     : formatCurrency(0)}
@@ -41,7 +41,7 @@ function BudgetBalance() {
                         ? formatCurrency(budget.totalCost)
                         : formatCurrency(0)}
                 </span>
-            </p>
+            </p> */}
             <ProgressBar
                 value={32}
                 className="mt-2 bg-white rounded"
