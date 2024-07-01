@@ -4,9 +4,21 @@ import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
 import Header from "./header";
 import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useQuery } from "react-query";
+
+const fetchBudgets = async () => {
+    const { data } = await axios.get("/api/budgets");
+    return data;
+};
 
 function MainComponent() {
     const { data: session } = useSession();
+
+    const { data: budgets, isLoading: isBudgetLoading } = useQuery(
+        "budgets",
+        fetchBudgets
+    );
 
     return (
         <>
@@ -22,15 +34,30 @@ function MainComponent() {
                         <p>{"Saying 'I do' to stress-free finances!"}</p>
                     </div>
                     <div className="flex flex-col gap-3 w-full">
-                        <Link
-                            href="/create-budget"
-                            className={buttonVariants({
-                                variant: "default",
-                                className: "btn-primary",
-                            })}
-                        >
-                            Create A Budget
-                        </Link>
+                        {session && !budgets && (
+                            <Link
+                                href="/create-budget"
+                                className={buttonVariants({
+                                    variant: "default",
+                                    className: "btn-primary",
+                                })}
+                            >
+                                Create A Budget
+                            </Link>
+                        )}
+
+                        {!session && (
+                            <Link
+                                href="/create-budget"
+                                className={buttonVariants({
+                                    variant: "default",
+                                    className: "btn-primary",
+                                })}
+                            >
+                                Create A Budget
+                            </Link>
+                        )}
+
                         {session ? (
                             <Link
                                 href="/auth/signin"
