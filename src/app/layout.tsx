@@ -4,6 +4,7 @@ import "./globals.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/nextauth/auth";
 import ClientWrapper from "./context/client-wrapper";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -47,6 +48,7 @@ export default async function RootLayout({
                 className={`${inter.variable} ${manrope.variable} ${plus_jakarta_sans.variable} ${outfit.variable}`}
             >
                 <ClientWrapper session={session}>{children}</ClientWrapper>
+                <Analytics />
             </body>
         </html>
     );
