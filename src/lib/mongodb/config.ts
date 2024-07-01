@@ -1,7 +1,11 @@
 import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI as string; // your mongodb connection string
-const options = {};
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 80000, // Increase timeout to 80 seconds
+};
 
 declare global {
     var _mongoClientPromise: Promise<MongoClient>;
