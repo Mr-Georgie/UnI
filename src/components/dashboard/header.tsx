@@ -108,7 +108,7 @@ function Header() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56">
                                 <DropdownMenuLabel>
-                                    {"Hey, Ena"}
+                                    {"My Account"}
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
