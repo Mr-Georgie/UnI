@@ -14,6 +14,7 @@ import {
 
 import { useToast } from "../ui/use-toast";
 import { Item } from "@/app/models/models";
+import { truncateSync } from "fs";
 
 interface Props {
     setIsStepOneDone: React.Dispatch<SetStateAction<boolean>>;
@@ -59,6 +60,12 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
         }
     };
 
+    const removeBudgetItem = (position: number) => {
+        setNewBudgetList((prevList: Item[]) =>
+            prevList.filter((item, index) => index !== position)
+        );
+    };
+
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter" && budgetName.trim()) {
             addNewBudgetList();
@@ -82,6 +89,14 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
         setIsStepOneDone(true);
     };
 
+    function truncateString(str: string | null | undefined) {
+        // Check if the string is longer than 25 characters
+        if (str && str.length > 25) {
+            return str.slice(0, 25) + "...";
+        }
+        return str;
+    }
+
     return (
         <>
             <div className="flex flex-col gap-4 bg-gray-100 h-[81.5%]">
@@ -101,18 +116,40 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
                                 initial={{ opacity: 0, x: 100 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="grid grid-cols-2 sm:grid-cols-2 gap-2 mx-6"
+                                className="grid grid-cols-2 sm:grid-cols-2 gap-2 mx-0 md:mx-6"
                             >
                                 {newBudgetList.map((budget, index) => (
                                     <Button
                                         key={index}
                                         variant="special"
                                         // onClick={() => selectItem(index)}
-                                        className={`rounded-2xl text-center ${
+                                        className={`cursor-default hover:opacity-100 rounded-2xl text-center text-wrap relative ${
                                             true ? "" : ""
                                         }`}
                                     >
-                                        {budget.name}
+                                        <span>
+                                            {truncateString(budget.name)}
+                                        </span>
+
+                                        <span
+                                            className="bg-white rounded-full cursor-pointer absolute inset-y-0 right-[9px] top-[6px] z-30"
+                                            onClick={() =>
+                                                removeBudgetItem(index)
+                                            }
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                className="size-6 text-red-400"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </span>
                                     </Button>
                                 ))}
                             </motion.div>
@@ -122,7 +159,7 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
                 <div className="container flex justify-center mb-3 relative max-w-[600px]">
                     <Input
                         type="text"
-                        placeholder="start typing here e.g catering, videography etc"
+                        placeholder="start typing here e.g apartment"
                         className="bg-white"
                         onChange={handleBudgetNameChange}
                         value={budgetName}
@@ -130,10 +167,10 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
                     />
                     {budgetName !== "" && (
                         <Button
-                            variant="outline"
+                            variant="default"
                             size="sm"
                             onClick={() => addNewBudgetList()}
-                            className="absolute inset-y-0 right-[39px] top-[6px] flex items-center"
+                            className="absolute inset-y-0 right-[39px] top-[6px] flex items-center bg-green-400 hover:bg-green-800"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +178,7 @@ const StepOne: React.FC<Props> = ({ setIsStepOneDone }) => {
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="size-4"
+                                className="size-4 text-white"
                             >
                                 <path
                                     strokeLinecap="round"

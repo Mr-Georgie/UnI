@@ -67,8 +67,17 @@ function QuickAction() {
         const { email } = data;
 
         if (!callbackUrl) {
+            setIsLoading(false);
             return toast({
                 description: "Please refresh your browser",
+            });
+        }
+
+        if (session && session.user?.email === email) {
+            setIsLoading(false);
+            return toast({
+                variant: "destructive",
+                description: "Please don't invite yourself, 😂",
             });
         }
 

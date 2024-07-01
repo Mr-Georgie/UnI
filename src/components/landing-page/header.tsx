@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 function Header() {
     return (
@@ -10,7 +11,7 @@ function Header() {
                 role="navigation"
                 className="flex justify-between items-center p-2"
             >
-                <div className="" role="logo">
+                <Link href="/" className="cursor-pointer" role="logo">
                     <Image
                         src="/Logo-dark.png"
                         width={60}
@@ -20,7 +21,7 @@ function Header() {
                         priority
                         // style={{ width: "50%", height: "auto" }}
                     />
-                </div>
+                </Link>
                 <div role="nav-items" className="">
                     {/* <Button variant="link">Login</Button> */}
                 </div>

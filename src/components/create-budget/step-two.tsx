@@ -30,11 +30,12 @@ const StepTwo: React.FC<Props> = ({ setIsStepOneDone, setIsStepTwoDone }) => {
 
     const handleCostChange = (
         event: ChangeEvent<HTMLInputElement>,
-        itemName: string
+        itemName: string,
+        position: number
     ) => {
         setNewBudgetList((prevItems) =>
-            prevItems.map((item) =>
-                item.name === itemName
+            prevItems.map((item, index) =>
+                item.name === itemName && index === position
                     ? { ...item, cost: Number(event.target.value) }
                     : item
             )
@@ -86,7 +87,7 @@ const StepTwo: React.FC<Props> = ({ setIsStepOneDone, setIsStepTwoDone }) => {
                                 initial={{ opacity: 0, x: 100 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="grid grid-cols-1 gap-2 mx-6"
+                                className="grid grid-cols-1 gap-2 mx-0 md:mx-6"
                             >
                                 {newBudgetList.length !== 0 ? (
                                     newBudgetList.map((item, index) => (
@@ -122,7 +123,8 @@ const StepTwo: React.FC<Props> = ({ setIsStepOneDone, setIsStepTwoDone }) => {
                                                     onChange={(e) =>
                                                         handleCostChange(
                                                             e,
-                                                            item.name
+                                                            item.name,
+                                                            index
                                                         )
                                                     }
                                                     className=""

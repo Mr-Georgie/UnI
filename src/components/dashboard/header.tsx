@@ -88,7 +88,7 @@ function Header() {
                             <SideBarSmall />
                         </SheetContent>
                     </Sheet>
-                    <div className="" role="logo">
+                    <Link href="/" className="cursor-pointer" role="logo">
                         <Image
                             src="/Logo-dark.png"
                             width={60}
@@ -98,7 +98,7 @@ function Header() {
                             priority
                             // style={{ width: "50%", height: "auto" }}
                         />
-                    </div>
+                    </Link>
                 </div>
                 <div className="flex gap-3 items-center">
                     <div className="">

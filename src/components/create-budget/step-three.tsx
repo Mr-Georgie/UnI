@@ -114,7 +114,7 @@ const StepThree: React.FC<Props> = ({
                                 initial={{ opacity: 0, x: 100 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="grid grid-cols-1 gap-2 mx-6"
+                                className="grid grid-cols-1 gap-2 mx-0 md:mx-6"
                             >
                                 <div className="grid gap-2">
                                     <Label htmlFor="duration">Duration</Label>
@@ -156,14 +156,11 @@ const StepThree: React.FC<Props> = ({
                                     </Label>
                                     <Input
                                         id="cost"
-                                        className="disabled:bg-white disabled:opacity-80"
+                                        className="disabled:bg-white disabled:opacity-50"
                                         onChange={handleCostChange}
                                         value={formatCurrency(totalCost)}
                                         disabled
                                     />
-                                    <span className="-pt-3 text-xs text-stone-400">
-                                        {"you can't edit total cost"}
-                                    </span>
                                 </div>
                             </motion.div>
                         </AnimatePresence>

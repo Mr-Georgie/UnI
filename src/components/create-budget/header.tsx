@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function Header() {
@@ -8,7 +9,7 @@ function Header() {
                 role="navigation"
                 className="flex justify-between items-center p-1"
             >
-                <div className="" role="logo">
+                <Link href="/" className="cursor-pointer" role="logo">
                     <Image
                         src="/Logo-dark.png"
                         width={40}
@@ -18,7 +19,7 @@ function Header() {
                         priority
                         // style={{ width: "50%", height: "auto" }}
                     />
-                </div>
+                </Link>
                 <div role="nav-items" className="">
                     {/* <Button variant="link">Login</Button> */}
                 </div>
