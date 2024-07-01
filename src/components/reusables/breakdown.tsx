@@ -72,7 +72,7 @@ function Breakdown() {
                     <TableCaption>
                         {budgets
                             ? "A list of your budget items"
-                            : "No budget account found"}
+                            : "No budget data"}
                     </TableCaption>
                     <TableHeader>
                         <TableRow>
