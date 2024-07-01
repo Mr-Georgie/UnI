@@ -90,7 +90,9 @@ export function SignInForm() {
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl">
                     signin to{" "}
-                    <span className="px-1 text-brand font-extrabold">UnI</span>
+                    <Link href="/" className="px-1 text-brand font-extrabold">
+                        UnI
+                    </Link>
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
