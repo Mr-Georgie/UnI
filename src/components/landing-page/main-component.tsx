@@ -29,7 +29,7 @@ function MainComponent() {
                             Create A Budget
                         </Link>
                         <Link
-                            href="/api/auth/login"
+                            href="/auth/signin"
                             className={buttonVariants({
                                 variant: "outline",
                                 className: "",
