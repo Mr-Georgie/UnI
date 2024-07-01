@@ -73,7 +73,11 @@ function QuickAction() {
             });
         }
 
-        if (session && session.user?.email === email) {
+        if (
+            session &&
+            session.user?.email &&
+            session.user?.email.toLowerCase() === email.toLowerCase()
+        ) {
             setIsLoading(false);
             return toast({
                 variant: "destructive",
