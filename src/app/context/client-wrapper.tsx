@@ -25,7 +25,14 @@ export default function ClientWrapper({
         return null; // Render nothing on the server side
     }
 
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                cacheTime: 1000 * 60 * 45,
+                staleTime: 1000 * 60 * 5,
+            },
+        },
+    });
 
     return (
         <SessionProvider session={session}>
