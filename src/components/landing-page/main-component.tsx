@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
 import Header from "./header";
+import { useSession } from "next-auth/react";
 
 function MainComponent() {
+    const { data: session } = useSession();
+
     return (
         <>
             <Header />
@@ -28,15 +31,27 @@ function MainComponent() {
                         >
                             Create A Budget
                         </Link>
-                        <Link
-                            href="/auth/signin"
-                            className={buttonVariants({
-                                variant: "outline",
-                                className: "",
-                            })}
-                        >
-                            Login
-                        </Link>
+                        {session ? (
+                            <Link
+                                href="/auth/signin"
+                                className={buttonVariants({
+                                    variant: "outline",
+                                    className: "",
+                                })}
+                            >
+                                Go to Dashboard
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/auth/signin"
+                                className={buttonVariants({
+                                    variant: "outline",
+                                    className: "",
+                                })}
+                            >
+                                Login
+                            </Link>
+                        )}
                     </div>
                 </div>
             </main>
