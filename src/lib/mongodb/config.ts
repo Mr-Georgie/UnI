@@ -15,13 +15,20 @@ class Singleton {
     private static _instance: Singleton;
     private client: MongoClient;
     private clientPromise: Promise<MongoClient>;
+
     private constructor() {
         this.client = new MongoClient(uri, options);
-        this.clientPromise = this.client.connect();
-        if (process.env.NODE_ENV === "development") {
-            // In development mode, use a global variable so that the value
-            // is preserved across module reloads caused by HMR (Hot Module Replacement).
-            global._mongoClientPromise = this.clientPromise;
+
+        try {
+            this.clientPromise = this.client.connect();
+            if (process.env.NODE_ENV === "development") {
+                // In development mode, use a global variable so that the value
+                // is preserved across module reloads caused by HMR (Hot Module Replacement).
+                global._mongoClientPromise = this.clientPromise;
+            }
+        } catch (error) {
+            console.error("Failed to connect to MongoDB", error);
+            this.clientPromise = Promise.reject(error);
         }
     }
 

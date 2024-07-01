@@ -69,6 +69,11 @@ function Breakdown() {
                 </div>
 
                 <Table>
+                    <TableCaption>
+                        {budgets
+                            ? "A list of your budget items"
+                            : "No budget account found"}
+                    </TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead className="max-w-8">S/N</TableHead>

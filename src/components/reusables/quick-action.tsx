@@ -27,6 +27,9 @@ import * as z from "zod";
 import { signIn } from "next-auth/react";
 import { setInviteCallBackUrl } from "@/lib/nextauth/utils";
 import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import Link from "next/link";
 
 const FormSchema = z.object({
     email: z.string().email({
@@ -34,9 +37,18 @@ const FormSchema = z.object({
     }),
 });
 
+const fetchBudgets = async () => {
+    const { data } = await axios.get("/api/budgets");
+    return data;
+};
+
 type FormData = z.infer<typeof FormSchema>;
 
 function QuickAction() {
+    const { data: budgets, isLoading: isBudgetLoading } = useQuery(
+        "budgets",
+        fetchBudgets
+    );
     const { data: session } = useSession();
     const { toast } = useToast();
     const callbackUrl = setInviteCallBackUrl(session);
@@ -167,9 +179,16 @@ function QuickAction() {
                     <Button className="w-full" type="button" disabled>
                         Start Saving
                     </Button>
-                    <Button className="w-full" disabled>
-                        Edit Budget
-                    </Button>
+                    {budgets ? (
+                        <Button className="w-full" disabled>
+                            Edit Budget
+                        </Button>
+                    ) : (
+                        <Button className="w-full">
+                            <Link href="/create-budget">Create Budget</Link>
+                        </Button>
+                    )}
+
                     <Button className="w-full" disabled>
                         Withdraw Savings
                     </Button>
