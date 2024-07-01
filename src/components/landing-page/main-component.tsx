@@ -60,7 +60,7 @@ function MainComponent() {
 
                         {session ? (
                             <Link
-                                href="/auth/signin"
+                                href="/dashboard"
                                 className={buttonVariants({
                                     variant: "outline",
                                     className: "",
