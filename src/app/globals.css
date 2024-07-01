@@ -78,6 +78,9 @@
 /* custom */
 
 @layer base {
+    body {
+        @apply bg-white;
+    }
     /* Typography */
     h1 {
         @apply text-heading-1 font-bold  font-outfit;
